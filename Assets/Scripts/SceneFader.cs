@@ -1,18 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SceneFader : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private Animator anim;
 
-    // Update is called once per frame
-    void Update()
+    private int faderID;
+
+    private void Start()
     {
-        
+        anim = GetComponent<Animator>();
+        faderID = Animator.StringToHash("Fade");
+        GameManager.RegisterSceneFader(this);
     }
+    
+    public void FadeOut(){
+        anim.SetTrigger(faderID);
+    }
+    
 }
+
